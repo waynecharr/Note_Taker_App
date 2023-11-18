@@ -6,5 +6,6 @@
 - "started the initial work for the server.js to include the dependencies"
 - "added some assumed middleware as well as fb directory that I will be using. May make changes to these later or add more if needed"
 - "added the html routes using app.get"
+- "added a get route for the notes. Also added a function for reading the notes and an array to capture them in."
 
 
