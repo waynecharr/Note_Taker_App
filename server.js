@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 //Shortcute for the file path directory instead of using ./db/dbjson. Had errors when I used that.
 dbFilePath = path.join(__dirname, 'db', 'db.json');
 
-
+// Function reads notes from db.
 function readNotes(filePath, callback) {
     fs.readFile(filePath, 'utf-8', (err, data) => {
         if (err) {
@@ -39,6 +39,7 @@ function readNotes(filePath, callback) {
     });
 }
 
+// Function writes notes. 
 function writeNotes(filePath, notes, callback) {
     fs.writeFile(filePath, JSON.stringify(notes, null, 2), 'utf-8', (err) => {
         if (err) {
@@ -49,31 +50,32 @@ function writeNotes(filePath, notes, callback) {
     });
 }
 
+// Gets all the ntoes from db/db.json.
 app.get('/api/notes', (req, res) => {
     readNotes(dbFilePath, (err, notes) => {
         if (err) {
             console.error(err);
-            res.status(500).json({ error: 'Unable to read the parsed data.' });
+            res.status(500).json({ error: 'Data cannot be read.' });
         } else {
             res.json(notes);
         }
     });
 });
 
+// Post notes to the db.json file. 
 app.post('/api/notes', (req, res) => {
     const newNote = req.body;
-    newNote.id = uuidv4(); // Assign a unique ID using uuid
-
+    newNote.id = uuidv4(); // Referenced back the unique id number. 
     readNotes(dbFilePath, (err, notes) => {
         if (err) {
             console.error(err);
-            res.status(500).json({ error: 'Unable to read the parsed data.' });
+            res.status(500).json({ error: 'Date cannot be read.' });
         } else {
             notes.push(newNote);
             writeNotes(dbFilePath, notes, (err) => {
                 if (err) {
                     console.error(err);
-                    res.status(500).json({ error: 'Unable to write the parsed data.' });
+                    res.status(500).json({ error: 'Cannot write data.' });
                 } else {
                     res.json(newNote);
                 }
@@ -83,6 +85,7 @@ app.post('/api/notes', (req, res) => {
 });
 
 
+// For testing purposes to listen on port 3002. 
 app.listen(PORT, function(){
     console.log('Server is listening on: http://localhost:' + PORT)
  });

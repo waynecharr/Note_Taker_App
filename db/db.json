@@ -1,11 +1,12 @@
 [
   {
-    "title": "Test Title",
-    "text": "Test text"
+    "title": "Test",
+    "text": "This is a note for testing purposes.\n",
+    "id": "aeb93044-46e3-44c9-9b51-e2a0bb0cd215"
   },
   {
-    "title": "Test",
-    "text": "test\n",
-    "id": "aeb93044-46e3-44c9-9b51-e2a0bb0cd215"
+    "title": "Shopping list. ",
+    "text": "- Banana\n- Apples\n- Milk\n-Oranges",
+    "id": "2984c447-beca-45d6-846f-f1bb0d9fa486"
   }
 ]
